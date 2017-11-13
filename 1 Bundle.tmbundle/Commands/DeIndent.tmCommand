@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/python
+
+"""This script removes the first tab from each selected line."""
+
+import os
+
+selected_text = os.environ['TM_SELECTED_TEXT']
+
+text = selected_text.split('\n')
+
+for l in text:
+	if l.startswith('    '):
+		print(l[4:])
+	elif l.startswith('\t'):
+		_ = l.replace('\t', '    ')
+		print(_[4:])
+	else:
+		print(l)</string>
+	<key>input</key>
+	<string>selection</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>name</key>
+	<string>DeIndent</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>text</string>
+	<key>outputLocation</key>
+	<string>replaceInput</string>
+	<key>uuid</key>
+	<string>c34630ef-bfd0-42cc-9999-ceaf5b8c2ede</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>

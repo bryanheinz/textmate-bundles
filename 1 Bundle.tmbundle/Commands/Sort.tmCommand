@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/python
+
+"""This script sorts selected lines."""
+
+import os
+
+selected_text = os.environ['TM_SELECTED_TEXT']
+
+text_list = selected_text.split('\n')
+
+sorted_list = sorted(text_list, key=lambda s: s.lower())
+
+text = '\n'.join(sorted_list)
+
+print(text)</string>
+	<key>input</key>
+	<string>selection</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>name</key>
+	<string>Sort Lines</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>text</string>
+	<key>outputLocation</key>
+	<string>replaceInput</string>
+	<key>uuid</key>
+	<string>82B09EDF-8684-4EC8-9746-590654AEBC53</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>
