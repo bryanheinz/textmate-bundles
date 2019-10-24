@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/python
+
+"""This script converts DokuWiki markup to HTML for WordPress"""
+
+import os
+
+selected_text = os.environ['TM_SELECTED_TEXT']
+
+text = selected_text.split('\n')
+index = 0
+
+for l in text:
+    a = l
+    
+    if '`' in l:
+        a = ""
+        count = 0
+        for c in l:
+            if c == '`':
+                if count == 0:
+                    a += '[enlighter lang="null"]'
+                    count += 1
+                    continue
+                elif count == 1:
+                    a += '[/enlighter]'
+                    count = 0
+                    continue
+            a += c
+    if '&lt;/code&gt;' in l:
+        a = a.replace('&lt;/code&gt;', '[/cc]')
+    if l.startswith("- "):
+        a = a.replace("- ", "&lt;li&gt;", 1)
+        a+="&lt;/li&gt;"
+    elif l.startswith("  - "):
+        a = a.replace("  - ", "\t&lt;li&gt;", 1)
+        a+="&lt;/li&gt;"
+    elif l.startswith('&lt;code&gt;'):
+        a = a.replace('&lt;code&gt;', '[cc]')
+        a = a.replace('&lt;/code&gt;', '[/cc]')
+    
+    print(a)</string>
+	<key>input</key>
+	<string>selection</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>name</key>
+	<string>wiki to html</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>text</string>
+	<key>outputLocation</key>
+	<string>replaceInput</string>
+	<key>uuid</key>
+	<string>4A8FD9FC-FCB0-4A8A-8709-D92E7DF471EF</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>
