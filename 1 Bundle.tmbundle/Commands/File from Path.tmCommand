@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env python
+
+"""This script gets the filename from a POSIX path."""
+
+import os
+
+selection = os.environ['TM_SELECTED_TEXT']
+lines = selection.split('\n')
+
+for line in lines:
+    print( os.path.split(line)[-1].strip() )</string>
+	<key>input</key>
+	<string>selection</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>name</key>
+	<string>File from Path</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>text</string>
+	<key>outputLocation</key>
+	<string>replaceInput</string>
+	<key>scope</key>
+	<string>Selection</string>
+	<key>uuid</key>
+	<string>356D55AB-4D53-4E2B-AFE7-0458DCD059AE</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>

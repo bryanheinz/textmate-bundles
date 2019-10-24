@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>command</key>
+	<string>#!/usr/bin/python
+
+"""This script sorts path lines by the last item in the path."""
+
+import os
+
+path_dict = {}
+
+selected_text = os.environ['TM_SELECTED_TEXT']
+
+text_list = selected_text.split('\n')
+
+for line in text_list:
+    path_dict[os.path.basename(line)] = line
+
+path_keys = path_dict.keys()
+
+sorted_keys = sorted(path_keys, key=lambda s: s.lower())
+
+for key in sorted_keys:
+    print(path_dict[key].strip())</string>
+	<key>name</key>
+	<string>Sort Paths</string>
+	<key>uuid</key>
+	<string>98E06031-C0B8-4560-8723-45385F8612E1</string>
+</dict>
+</plist>
